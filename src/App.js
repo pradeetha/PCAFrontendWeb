@@ -5,6 +5,7 @@ import "./App.css";
 import "./customStyles.css";
 import { Navbar } from "./components/Navbar";
 import { Sidebar } from "./components/Sidebar";
+import {Login} from './components/Login/Login';
 
 
 function BodyContent() {
@@ -34,9 +35,11 @@ function BodyContent() {
 function App() {
   return (
     <div classNameName="App">
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar>
       <Sidebar></Sidebar>
-      <BodyContent></BodyContent>
+      <BodyContent></BodyContent> */}
+      <Login/>
+
       {/* <header classNameName="App-header">
         <img src={logo} classNameName="App-logo" alt="logo" />
         <p>
