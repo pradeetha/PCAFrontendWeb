@@ -2581,9 +2581,10 @@
   
   .btn-primary {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #3886d9;
+    border-color: #3886d9;
     box-shadow: none;
+    margin-top: 5vh;
   }
   
   .btn-primary:hover {
@@ -4818,12 +4819,15 @@
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
-    min-width: 0;
+    min-width: 35vh;
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
     border: 0 solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
+    /* margin-left: 45vh;
+    margin-top: 2%;
+    min-height: 35vh; */
   }
   
   .card > hr {
@@ -34978,7 +34982,7 @@
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
-    height: 100vh;
+    height: 90.7vh;
     -ms-flex-pack: center;
     justify-content: center;
   }
@@ -35007,6 +35011,7 @@
     border-top: 0;
     color: #666;
     padding: 20px;
+    height: 60vh;
   }
   
   .login-card-body .input-group .form-control,
@@ -35150,7 +35155,7 @@
   
   .profile-username {
     font-size: 21px;
-    margin-top: 5px;
+    margin-top: 20px;
   }
   
   .post {

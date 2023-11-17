@@ -10,6 +10,8 @@ import DeviceManagementPage from "./pages/DeviceManagement";
 import RootLayout from "./pages/RootLayout";
 // import { Navbar } from "./components/Navbar";
 // import { Sidebar } from "./components/Sidebar";
+import { Login } from "./pages/Login";
+import Userprofile from "./pages/Userprofile";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,8 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <DashboardPage /> },
       { path: "/devicemgt", element: <DeviceManagementPage /> },
+      // { path: "/login", element: <Login /> },
+      { path: "/userprofile", element: <Userprofile /> },
     ],
   },
 ]);
