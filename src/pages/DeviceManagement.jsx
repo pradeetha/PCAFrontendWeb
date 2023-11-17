@@ -1,10 +1,19 @@
 import React, { useState } from "react";
+import Devices from "../components/Devices";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
-import CustomSlider from "../components/CustomSlider";
 
 const DeviceManagementPage = () => {
+  const userData = JSON.parse(localStorage.getItem("userdata"))
+
+  if (userData === null) {
+    window.location.href = '/login';
+  } 
+
+  const token = userData.token
+  const userId = userData.userId;
+  
+  let isAdded = false;
+
   const [devices, setDevices] = useState([]);
   const [newDevice, setNewDevice] = useState({
     name: "",
@@ -15,15 +24,50 @@ const DeviceManagementPage = () => {
     threshold: 999,
   });
 
-  const [sliderValue, setSliderValue] = useState(999); // Initial value
+  // const [sliderValue, setSliderValue] = useState(999); // Initial value
 
   const handleInputChange = (e) => {
+    console.log(e);
     const { name, value } = e.target;
     setNewDevice({ ...newDevice, [name]: value });
   };
 
   const handleAddDevice = () => {
+    
     setDevices([...devices, newDevice]);
+    console.log(newDevice);
+
+    const apiUrl = "/api/v1/DeviceInfo";
+
+    const postData = {
+      deviceId: "0",
+      userProfileId: userId,
+      deviceSerialKey: newDevice.serial,
+      deviceType: newDevice.type,
+      applianceName: newDevice.name,
+      internalLocation: newDevice.location,
+      address: newDevice.address,
+      powerThresholdValue: newDevice.threshold,
+    };
+
+    // Make a POST request with fetch
+    fetch(apiUrl, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify(postData), // Convert the data to JSON format
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        isAdded = true;
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
     setNewDevice({
       name: "",
       type: "",
@@ -34,9 +78,10 @@ const DeviceManagementPage = () => {
     });
   };
 
-  const handleSliderChange = (event) => {
-    setSliderValue(event.target.value);
-  };
+  // const handleSliderChange = (event) => {
+  //   console.log(event.target);
+  //   setSliderValue(event.target.value);
+  // };
 
   return (
     <div className="content-wrapper">
@@ -131,33 +176,19 @@ const DeviceManagementPage = () => {
                           </div>
 
                           <div className="form-group col-md-4">
-                            {/* <CustomSlider threshold={newDevice.threshold} onValueChange={handleChildCustomRangeValueChange} /> */}
-
-                            {/* <label htmlFor="deviceType">Power Threshold (Units):</label> */}
-                            {/* <input
-                              type="text"
-                              className="form-control"
-                              id="threshold"
-                              name="threshold"
-                              value={newDevice.threshold}
-                              onChange={handleInputChange}
-                            />
-                            <label for="customRange1">Custom range</label>
-                            <input type="range" class="custom-range" id="customRange1"></input> */}
-
                             <div>
                               <label htmlFor="slider">
-                                Power Threshold (Units): {sliderValue}
+                                Power Threshold (Units): {newDevice.threshold}
                               </label>
                               <input
                                 className="custom-range"
                                 type="range"
                                 id="slider"
-                                name="slider"
+                                name="threshold"
                                 min={0}
                                 max={999}
-                                value={sliderValue}
-                                onChange={handleSliderChange}
+                                value={newDevice.threshold}
+                                onChange={handleInputChange}
                               />
                             </div>
                           </div>
@@ -179,33 +210,7 @@ const DeviceManagementPage = () => {
           </section>
 
           <section>
-            <h3 className="mt-4">Device List</h3>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Device Serial Key</th>
-                  <th>Device Name</th>
-                  <th>Type</th>
-                  <th>Location</th>
-                  <th>Address</th>
-                  <th>Threshold </th>
-                  <th>Type</th>
-                </tr>
-              </thead>
-              <tbody>
-                {devices.map((device, index) => (
-                  <tr key={index}>
-                    <td>{device.serial}</td>
-                    <td>{device.name}</td>
-                    <td>{device.type}</td>
-                    <td>{device.location}</td>
-                    <td>{device.address}</td>
-                    <td>{sliderValue}</td>
-                    <td>{device.type}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <Devices isAdded={isAdded} newDevice={newDevice} />
           </section>
         </div>
       </div>

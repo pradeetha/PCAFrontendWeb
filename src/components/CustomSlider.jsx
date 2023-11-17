@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const CustomSlider = (props) => {
   const [sliderValue, setSliderValue] = useState(props.threshold); // Initial value
-
-  
 
   props.onValueChange(sliderValue);
 

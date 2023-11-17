@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import appImage from "../assets/app-logo.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTachometer } from "@fortawesome/free-solid-svg-icons";
+import { faTachometerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTv } from "@fortawesome/free-solid-svg-icons";
 
 export function Sidebar() {
@@ -21,16 +21,16 @@ export function Sidebar() {
 
       {/** Sidebar **/}
       <div className="sidebar">
-        <div className="user-panel mt-3 pb-3 mb-3 d-flex">
+        {/* <div className="user-panel mt-3 pb-3 mb-3 d-flex">
           <div className="image">
-            {/* <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image"> */}
+            <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image">
           </div>
           <div className="info">
             <a href="#" className="d-block">
               Alexander Pierce
             </a>
           </div>
-        </div>
+        </div> */}
 
         {/* Sidebar Menu */}
         <nav className="mt-2">
@@ -41,12 +41,12 @@ export function Sidebar() {
             data-accordion="false"
           >
             <li className="nav-item">
-              <Link to="/" className="nav-link active">
+              <Link to="/" className="nav-link">
                   <i className="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
                     {/* <i className="right fas fa-angle-left"></i> */}
-                    <FontAwesomeIcon className="right" icon={faTachometer} />
+                    <FontAwesomeIcon className="right" icon={faTachometerAlt} />
                   </p>
               </Link>
             </li>
