@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DashboardPage from "./pages/Dashboard";
 import DeviceManagementPage from "./pages/DeviceManagement";
 import RootLayout from "./pages/RootLayout";
+import Login from "./pages/Login";
 // import { Navbar } from "./components/Navbar";
 // import { Sidebar } from "./components/Sidebar";
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       { path: "/", element: <DashboardPage /> },
       { path: "/devicemgt", element: <DeviceManagementPage /> },
     ],
+  },
+  {
+    path: "/login",
+    children: [{ path: "/login", element: <Login /> }],
   },
 ]);
 
