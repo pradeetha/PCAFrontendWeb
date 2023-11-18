@@ -4,7 +4,7 @@ import appImage from "../assets/app-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTachometerAlt } from "@fortawesome/free-solid-svg-icons";
 import { faTv } from "@fortawesome/free-solid-svg-icons";
-
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 export function Sidebar() {
   return (
     // Main Sidebar Container
@@ -57,6 +57,15 @@ export function Sidebar() {
                   <p>
                     Device Management
                     <FontAwesomeIcon className="right" icon={faTv} />
+                  </p>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/profile" className="nav-link">
+                  <i className="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    User Profile
+                    <FontAwesomeIcon className="right" icon={faUser} />
                   </p>
               </Link>
             </li>

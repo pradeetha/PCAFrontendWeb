@@ -68,6 +68,13 @@
     text-align: left;
     background-color: #fff;
   }
+  .login-bgimage
+  {
+      background-image: url("../src/assets/login-image.jpg");
+      background-size: cover;
+      height: 100vh;
+      background-repeat:no-repeat; 
+  }
   
   [tabindex="-1"]:focus:not(:focus-visible) {
     outline: 0 !important;
