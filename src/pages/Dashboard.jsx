@@ -5,6 +5,8 @@ import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 
 import PieChart from "../components/PieChart";
 import BarChart from "../components/BarChart";
+import Predictions from "../components/Predictions";
+import LineChart from "../components/LineChart";
 
 function DashboardPage() {
   const userData = JSON.parse(localStorage.getItem("userdata"))
@@ -117,6 +119,32 @@ function DashboardPage() {
           </div>
         </div>
       </section>
+
+      <section className="mr-2 ml-2">
+        <div className="row">
+        <div className="col-lg-12">
+            <div className="card card-primary card-outline">
+              <div className="card-body">
+                <Predictions />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* <section className="mr-2 ml-2">
+        <div className="row">
+        <div className="col-lg-12">
+            <div className="card card-primary card-outline">
+              <div className="card-body">
+                <LineChart />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section> */}
     </div>
   );
 }

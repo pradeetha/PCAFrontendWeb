@@ -49,7 +49,7 @@ export function Login()
             })
             .catch((error) => {
               console.error("Error:", error);
-              window.location.href = '/login';
+              window.location.href = '/';
             });
     }
 
