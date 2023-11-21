@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from "react";
+import EnvConfig from "../components/EnvConfig";
+var envConfig = new EnvConfig();
+
+async function getDevicesForUserProfile(userId,token) {     
+  const apiUrl = `${envConfig.backendAPIUrl}/api/v1/DeviceByUserProfileId/${userId}`;
+  return fetch(apiUrl, {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    }    
+  }).then(data => data.json()).catch((error) => {console.log(error);window.location.href = "/UserProfile";});
+ }
 
 function Predictions() {
-  const userData = JSON.parse(localStorage.getItem("userdata"))
-
+  const userData = JSON.parse(localStorage.getItem("userdata"));
   const token = userData.token
   const userId = userData.userId;
   const [devices, setDevices] = useState([]);
@@ -16,26 +28,13 @@ function Predictions() {
   });
 
   const url = `/api/v1/DeviceByUserProfileId/${userId}`;
-  const urlPredictionApi = `http://50200b0f-ae99-411a-8c7c-6347f560ac2d.eastus.azurecontainer.io/score`;
+  const urlPredictionApi = `http://50200b0f-ae99-411a-8c7c-6347f560ac2d.eastus.azurecontainer.io/score`; 
+  const handleDataLoad = async e => {   
+    const resData = await getDevicesForUserProfile(userId,token);    
+    setDevices(resData.deviceData);
+  }
 
-  useEffect(() => {
-    fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-    })
-    .then((response) => {
-      return response.json();
-    })
-    .then((resData) => {
-      setDevices(resData.deviceData);
-    })
-    .catch((error) => {
-      window.location.href = '/login';
-    });
-  }, []);
+  handleDataLoad(); 
 
   return (
     <div>
